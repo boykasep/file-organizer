@@ -1,53 +1,27 @@
-# 🗂️ Pengelola File Massal (GUI & CLI)
+# 🗂️ Pindah File Massal 
 
-Sebuah skrip Bash yang kuat dan ramah pengguna untuk mengelola file secara otomatis ke dalam folder berdasarkan nama filenya. Kini dilengkapi dengan antarmuka grafis (GUI) dan antarmuka baris perintah (CLI).
+Sebuah utilitas tingkat produksi yang kompatibel lintas platform untuk mengelola file dengan aman dan cerdas berdasarkan file konfigurasi yang fleksibel. Ini adalah versi definitif, yang telah di-debug secara teliti untuk keandalan maksimal dan pengalaman pengguna yang profesional.
 
-🛠️ Awalnya dibuat untuk menyortir ratusan dokumen mahasiswa — kini telah berevolusi menjadi sebuah utilitas lengkap untuk penggunaan umum.
+## ✨ Fitur Inti
 
-## ✨ Fitur-fitur
-
--   **✅ Antarmuka Ganda:** Jalankan dengan GUI yang simpel dan mudah, atau gunakan baris perintah yang andal untuk otomatisasi.
--   **✅ Mode Dry-Run yang Aman:** Lihat perubahan apa yang akan terjadi *sebelum* ada file yang benar-benar dipindahkan. Sebuah fitur keamanan penting!
--   **✅ Pembuatan Folder Otomatis:** Membuat folder khusus untuk setiap nama file yang unik.
--   **✅ Pengelompokan Cerdas:** Memindahkan semua file terkait (misalnya, `dokumen.pdf`, `dokumen.jpg`) ke dalam folder yang benar.
--   **✅ Penanganan Akhiran Cerdas:** Mampu mengenali akhiran (seperti `_t`) untuk mengelompokkan file terkait (misalnya, `ijazah.pdf` dan `ijazah_t.pdf`) menjadi satu.
+-   **✅ Antarmuka Pengguna Profesional:** Tampilan yang konsisten dan jelas dengan header, log berwarna, ringkasan akhir yang komprehensif, dan prompt undo interaktif saat terjadi kegagalan.
+-   **✅ Andal:** Dilengkapi penanganan *exit* (`trap`) yang tangguh, validasi teliti untuk semua path dan konfigurasi, serta logika inti yang telah disempurnakan untuk mencegah error.
+-   **✅ Aman dan Bisa Dibatalkan:** Sistem `undo` yang persisten dengan backup log memungkinkan Anda membatalkan operasi apa pun. Mode `--dry-run` memberikan pratinjau yang aman.
+-   **✅ Performa Tinggi:** Memproses ribuan file secara efisien menggunakan pemindaian sekali jalan dan penghitung cerdas di dalam memori untuk me-*rename*.
+-   **✅ GUI Lintas Platform:** Secara otomatis menggunakan **Zenity di Linux** dan **AppleScript di macOS**.
 
 ## 🔧 Prasyarat
 
--   Lingkungan berbasis Unix (Linux, macOS, WSL).
--   Untuk mode GUI: `zenity` harus terinstal.
-    -   Di Debian/Ubuntu, instal dengan: `sudo apt install zenity`
-
-## 📦 Instalasi
-
-Tidak perlu instalasi. Cukup buat skrip agar bisa dieksekusi:
-```bash
-chmod +x pengelola-file.sh
-```
+-   Lingkungan berbasis Unix (Linux, macOS, atau **WSL/Git Bash di Windows**).
+-   Untuk mode GUI:
+    -   Di **Linux**: `zenity` harus terinstal (`sudo apt install zenity`).
+    -   Di **macOS**: Tidak perlu instalasi tambahan.
 
 ## 🚀 Cara Penggunaan
 
-### Menggunakan Antarmuka Grafis (Disarankan untuk Pemula)
-
-Cukup jalankan skrip dengan opsi `--gui`. Sebuah jendela akan muncul meminta Anda memilih folder.
-
-```bash
-./pengelola-file.sh --gui
-```
-
-### Menggunakan Baris Perintah (CLI)
-
-Arahkan skrip ke direktori target.
-
-```bash
-# Untuk langsung mengeksekusi
-./pengelola-file.sh /path/ke/folder/anda
-
-# Untuk melihat pratinjau perubahan tanpa memindahkan file apa pun
-./pengelola-file.sh /path/ke/folder/anda --dry-run
-```
+1.  **Konfigurasi:** Ubah `organize.conf` sesuai aturan Anda.
+2.  **Jalankan:** Eksekusi `./pengelola-file.sh`.
+3.  **Undo:** Untuk membatalkan, jalankan `./pengelola-file.sh --undo`.
 
 ---
-*Silakan berkontribusi atau melaporkan jika ada masalah.*
-
-*Konsep dan skrip oleh Hendra. Berevolusi dan didokumentasikan dengan bantuan Gemini dari Google.*
+*Konsep dan skrip asli oleh boykasep. Berevolusi menjadi utilitas profesional dengan penyempurnaan kolaboratif via Gemini dari Google.*
