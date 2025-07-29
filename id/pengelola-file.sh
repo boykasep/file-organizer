@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
 # =============================================================================
-# Pengelola File Massal v17.0 - Edisi Antipeluru
-# Deskripsi: Versi final yang telah di-debug secara teliti, berfokus pada
-#            keandalan, antarmuka pengguna yang profesional, dan mekanisme
-#            penanganan error yang tangguh.
+# Pindah File Massal 
 # =============================================================================
 
 set -euo pipefail
@@ -33,7 +30,7 @@ log() {
 show_header() {
     clear
     echo -e "${COLOR_CYAN}==================================================================="
-    echo "|          PENGELOLA FILE TINGKAT LANJUT - EDISI FINAL          |"
+    echo "|          PENGELOLA FILE TINGKAT LANJUT       |"
     echo -e "===================================================================${COLOR_RESET}"
     echo -e "💡 Untuk membatalkan operasi terakhir, jalankan: ${COLOR_GREEN}$0 --undo${COLOR_RESET}"
     echo "   Log untuk undo disimpan di: ${undo_log}"
