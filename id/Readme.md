@@ -1,85 +1,53 @@
-# 🗂️ Pengelola File Massal (Batch File Organizer)
+# 🗂️ Pengelola File Massal (GUI & CLI)
 
-Sebuah skrip Bash yang sederhana namun kuat untuk mengelola banyak file secara otomatis ke dalam folder masing-masing berdasarkan nama filenya. Sangat cocok untuk merapikan dokumen, gambar, atau koleksi file apa pun yang memiliki pola penamaan yang konsisten.
+Sebuah skrip Bash yang kuat dan ramah pengguna untuk mengelola file secara otomatis ke dalam folder berdasarkan nama filenya. Kini dilengkapi dengan antarmuka grafis (GUI) dan antarmuka baris perintah (CLI).
 
-🛠️ Awalnya dibuat untuk menyortir ratusan dokumen mahasiswa (seperti ijazah dan transkrip nilai) — kini tersedia untuk penggunaan umum.
+🛠️ Awalnya dibuat untuk menyortir ratusan dokumen mahasiswa — kini telah berevolusi menjadi sebuah utilitas lengkap untuk penggunaan umum.
 
 ## ✨ Fitur-fitur
 
--   **✅ Pembuatan Folder Otomatis:** Membuat folder khusus untuk setiap nama dasar file yang unik.
+-   **✅ Antarmuka Ganda:** Jalankan dengan GUI yang simpel dan mudah, atau gunakan baris perintah yang andal untuk otomatisasi.
+-   **✅ Mode Dry-Run yang Aman:** Lihat perubahan apa yang akan terjadi *sebelum* ada file yang benar-benar dipindahkan. Sebuah fitur keamanan penting!
+-   **✅ Pembuatan Folder Otomatis:** Membuat folder khusus untuk setiap nama file yang unik.
 -   **✅ Pengelompokan Cerdas:** Memindahkan semua file terkait (misalnya, `dokumen.pdf`, `dokumen.jpg`) ke dalam folder yang benar.
--   **✅ Penanganan Akhiran (Suffix):** Mampu mengenali akhiran nama file seperti `_transkrip`, `_t`, dll., dan mengelompokkan file-file terkait menjadi satu.
--   **✅ Minimalis & Fleksibel:** Dapat bekerja dengan atau tanpa akhiran, menangani pemrosesan massal dengan bersih.
+-   **✅ Penanganan Akhiran Cerdas:** Mampu mengenali akhiran (seperti `_t`) untuk mengelompokkan file terkait (misalnya, `ijazah.pdf` dan `ijazah_t.pdf`) menjadi satu.
 
 ## 🔧 Prasyarat
 
--   Lingkungan berbasis Unix (Linux, macOS, atau WSL di Windows).
--   Pengetahuan dasar tentang penggunaan terminal.
+-   Lingkungan berbasis Unix (Linux, macOS, WSL).
+-   Untuk mode GUI: `zenity` harus terinstal.
+    -   Di Debian/Ubuntu, instal dengan: `sudo apt install zenity`
 
 ## 📦 Instalasi
 
-Tidak perlu instalasi. Cukup unduh skrip `pengelola-file.sh` dan buat agar bisa dieksekusi:
+Tidak perlu instalasi. Cukup buat skrip agar bisa dieksekusi:
 ```bash
 chmod +x pengelola-file.sh
 ```
 
 ## 🚀 Cara Penggunaan
 
-Jalankan skrip dari terminal Anda, dan arahkan ke direktori yang berisi file-file yang ingin Anda rapikan.
+### Menggunakan Antarmuka Grafis (Disarankan untuk Pemula)
 
-#### Penggunaan Dasar (Satu File per Folder)
+Cukup jalankan skrip dengan opsi `--gui`. Sebuah jendela akan muncul meminta Anda memilih folder.
 
-Gunakan cara ini jika Anda memiliki file seperti `file1.pdf`, `file2.pdf`, dll., dan Anda ingin memindahkan masing-masing file ke dalam foldernya sendiri (`/file1/`, `/file2/`).
 ```bash
-./pengelola-file.sh /path/ke/folder/file_anda
+./pengelola-file.sh --gui
 ```
 
-#### Penggunaan Lanjutan (Mengelompokkan File dengan Akhiran)
+### Menggunakan Baris Perintah (CLI)
 
-Gunakan cara ini jika Anda memiliki file terkait yang nama dasarnya sama tetapi memiliki akhiran tertentu (contoh: `john_doe.pdf` dan `john_doe_transkrip.pdf`).
+Arahkan skrip ke direktori target.
+
 ```bash
-./pengelola-file.sh -s _transkrip /path/ke/folder/file_anda
-```
-Opsi `-s` mendefinisikan akhiran yang harus dicari. Skrip akan membuat folder berdasarkan nama file *tanpa* akhiran tersebut dan memindahkan kedua file ke dalamnya.
+# Untuk langsung mengeksekusi
+./pengelola-file.sh /path/ke/folder/anda
 
-## 💡 Kustomisasi & Contoh Lanjutan
-
-Skrip ini sengaja dibuat sederhana, namun Anda dapat dengan mudah memodifikasinya untuk kebutuhan yang lebih kompleks. Berikut beberapa contoh.
-
-#### Contoh 1: Memindahkan Folder ke Tujuan Tertentu
-
-Secara default, folder baru dibuat di dalam direktori target. Jika Anda ingin membuatnya di lokasi lain (misalnya, `~/Dokumen/Hasil_Rapih`), Anda bisa membuat sedikit perubahan.
-
-Temukan baris ini di dalam skrip:
-```bash
-mkdir -p "${nama_folder}"
-```
-Dan ubah untuk menentukan alamat tujuan Anda:
-```bash
-ALAMAT_TUJUAN="/home/user/Dokumen/Hasil_Rapih"
-mkdir -p "${ALAMAT_TUJUAN}/${nama_folder}"
-```
-Anda juga perlu memperbarui perintah `mv` setelahnya agar menggunakan alamat baru:
-```bash
-mv "${nama_folder}"* "${ALAMAT_TUJUAN}/${nama_folder}/"
-```
-
-#### Contoh 2: Menambahkan Awalan (Prefix) pada Nama Folder
-
-Jika Anda ingin setiap folder baru memiliki awalan (misalnya, `Arsip_file1`, `Arsip_file2`), Anda bisa memodifikasi skrip.
-
-Temukan baris ini:
-```bash
-nama_folder=$(basename "$file" ".pdf") # Atau baris basename yang relevan
-```
-Lalu modifikasi perintah `mkdir` dan `mv` untuk menyertakan awalan yang Anda inginkan:
-```bash
-AWALAN="Arsip"
-mkdir -p "${AWALAN}_${nama_folder}"
-mv "${nama_folder}".* "${AWALAN}_${nama_folder}/"
+# Untuk melihat pratinjau perubahan tanpa memindahkan file apa pun
+./pengelola-file.sh /path/ke/folder/anda --dry-run
 ```
 
 ---
 *Silakan berkontribusi atau melaporkan jika ada masalah.*
 
-*Konsep dan skrip asli oleh Hendra. Disempurnakan untuk penggunaan publik dan didokumentasikan dengan bantuan Gemini dari Google.*
+*Konsep dan skrip oleh Hendra. Berevolusi dan didokumentasikan dengan bantuan Gemini dari Google.*
