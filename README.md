@@ -85,4 +85,4 @@ mv "${folder_name}".* "${PREFIX}_${folder_name}/"
 ---
 *Feel free to contribute or report issues.*
 
-*Concept and original script by Hendra. Refactored for public use and documented with assistance from Google's Gemini.*
+*Concept and original script by boykasep. Refactored for public use and documented with assistance from Google's Gemini.*
