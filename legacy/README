@@ -1,0 +1,5 @@
+# Legacy Version (v1)
+
+This folder contains the original, simple version of the script. It's a single-file script without a GUI or advanced features, perfect for understanding the core logic.
+
+The main, recommended version of this project can be found in the `/en` or `/id` directories in the root of this repository.
