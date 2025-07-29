@@ -30,7 +30,7 @@ log() {
 show_header() {
     clear
     echo -e "${COLOR_CYAN}==================================================================="
-    echo "|             ADVANCED FILE ORGANIZER - FINAL EDITION             |"
+    echo "|             ADVANCED FILE ORGANIZER        |"
     echo -e "===================================================================${COLOR_RESET}"
     echo -e "💡 To undo the last operation, run: ${COLOR_GREEN}$0 --undo${COLOR_RESET}"
     echo "   The undo log is stored at: ${undo_log}"
